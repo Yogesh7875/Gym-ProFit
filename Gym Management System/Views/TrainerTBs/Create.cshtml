@@ -1,0 +1,68 @@
+﻿@model Gym_Management_System.Models.TrainerTB
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<link href="~/CSS/Style.css" rel="stylesheet" />
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <h1>Add Trainer Details</h1>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, "Name")
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Name" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Phone, "Phone")
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Phone" } })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, "Email")
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Email" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.JoinDate, "Join Date")
+            @Html.EditorFor(model => model.JoinDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+            @Html.ValidationMessageFor(model => model.JoinDate, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DOB, "Date of Birth")
+            @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+            @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, "Address")
+            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Address" } })
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Experience, "Experience")
+            @Html.EditorFor(model => model.Experience, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Experience" } })
+            @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn-submit">Save</button>
+            </div>
+            <div class="col-md-6">
+                <a href="@Url.Action("Index","TrainerTBs")" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </div>
+    </div>
+}

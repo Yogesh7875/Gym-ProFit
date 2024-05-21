@@ -1,0 +1,133 @@
+﻿@model Gym_Management_System.Models.MemberTB
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="container">
+    <div class="col-md-6 pt-5 pt-sm-3">
+        <h2 class="h4 mb-3">Add Member</h2>
+        <form class="needs-validation" novalidate="">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="reg-fn"> Name</label>
+                        <input class="form-control" type="text" required="" id="reg-fn" placeholder="Enter name">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="reg-ln">Phone</label>
+                        <input class="form-control" type="text" required="" id="reg-phone" placeholder="Enter Phone number">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="reg-email">E-mail Address</label>
+                        <input class="form-control" type="email" required="" id="reg-email" placeholder="Enter email">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="reg-phone">Joining Date (dd/mm/yy)</label>
+                        <input class="form-control" type="text" required="" placeholder="Enter Date">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="reg-password">DOB(dd/mm/yy)</label>
+                        <input class="form-control" type="text" required="" placeholder="Enter DOB">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="reg-password-confirm">Address</label>
+                        <input class="form-control" type="text" required="" placeholder="Enter Address">
+                    </div>
+                </div>
+            </div>
+            <div class="form-check">
+                <p class="gen">Gender</p>
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Male
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Female
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Other
+                </label>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6 pt-5 pt-sm-3">
+        <h2 class="h4 mb-3">Membership Details</h2>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="reg-fn"> Plan</label>
+                        <select id="inputState" class="form-control">
+                            <option selected>Choose Plan</option>
+                            <option>1 month</option>
+                            <option>3 month</option>
+                            <option>6 month</option>
+                            <option>12 month</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="reg-ln">Trainer Assigned</label>
+                        <select id="inputState" class="form-control">
+                            <option selected>Choose Trainer</option>
+                            <option>Trainer 1</option>
+                            <option>TRainer 2</option>
+                            <option>Trainer 3</option>
+                            <option>Trainer 4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="reg-email">Start Date</label>
+                        <input class="form-control" type="email" required="" id="reg-email" placeholder="Enter Date">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="reg-phone">Paid Amount</label>
+                        <input class="form-control" type="text" required="" placeholder="Enter amount">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="reg-password">Payment Date</label>
+                        <input class="form-control" type="text" required="" placeholder="Enter Date">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="reg-password-confirm">Payment Mode</label>
+                        <select name="PaymentMode" class="form-control">
+                            <option selected>Choose Mode</option>
+                            <option>Cash</option>
+                            <option>UPI</option>
+                            <option>Google Pay</option>
+                            <option>Phone Pay</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="text-right">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+
+    </div>
+ </div>

@@ -1,0 +1,45 @@
+﻿@model Gym_Management_System.Models.TransactionTB
+@{
+    ViewBag.Title = "UpdatePayment";
+}
+<link href="~/CSS/Style.css" rel="stylesheet" />
+@using (Html.BeginForm("UpdateData", "Dashboard", FormMethod.Post))
+{
+<div class="container">
+    <h1>Pay Remaining Amount</h1>
+    <div class="form-group">
+        <input type="hidden" id="id" name="id" value="@Model.ID" />
+    </div>
+    <div class="form-group">
+        <input type="hidden" id="paidAmounts" name="paidAmounts" value="@Model.PaidAmount">
+    </div>
+    <div class="form-group">
+        <label for="dueAmount">Due Amount:</label>
+        <input class="form-control" type="hidden" id="dueAmount" name="remAmount" value="@Model.DueAmount">
+    </div>
+    <div class="form-group">
+        <label for="dueAmount">Due Amount:</label>
+        <input class="form-control" type="number" id="dueAmount" name="dueAmount" value="@Model.DueAmount">
+    </div>
+    <div class="form-group">
+        <label for="paydate">Payment Date:</label>
+        <input class="form-control" type="date" id="paydate" name="paydate" required>
+    </div>
+    <div class="form-group">
+        <label for="mode">Payment Mode:</label>
+        <select class="form-control" id="mode" name="mode" required>
+            <option value="">Choose Mode</option>
+            <option value="Cash">Cash</option>
+            <option value="UPI">UPI</option>
+            <option value="Google Pay">Google Pay</option>
+            <option value="Phone Pay">Phone Pay</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <button type="submit" class="btn-submit">Save</button>
+        </div>
+    </div>
+</div>
+}

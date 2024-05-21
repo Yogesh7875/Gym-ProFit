@@ -1,0 +1,106 @@
+﻿@model Gym_Management_System.Models.ShowData
+@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    .dashboard-container {
+        padding: 20px;
+    }
+
+    .sales-section {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .sales-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .sales-group {
+        flex: 0 0 calc(33.33% - 10px);
+        max-width: calc(33.33% - 10px);
+        text-align: center;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #f0f0f0;
+        margin-bottom: 10px;
+    }
+
+    .renewed-membership {
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .sales-div37 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .sales-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .sales-bg2, .sales-bg3, .sales-bg4, .sales-bg5 {
+        width: 50px;
+        height: 50px;
+        background-color: #ccc; /* Set background color as needed */
+        border-radius: 50%;
+    }
+</style>
+
+<div class="dashboard-container">
+    <div class="sales-section">
+        <div class="sales-content">
+            <div class="sales-group">
+                <div class="sales-bg5"></div>
+                <div class="renewed-membership">Visitors</div>
+                <div class="sales-div37">@Model.vData</div>
+                <img class="sales-icon" alt="" src="~/Icon/icon@2x.png" />
+            </div>
+            <div class="sales-group">
+                <div class="sales-bg4"></div>
+                <div class="renewed-membership">Members</div>
+                <div class="sales-div37">@Model.memberData</div>
+                <img class="sales-icon" alt="" src="~/Icon/icon@2x.png" />
+            </div>
+            <div class="sales-group">
+                <div class="sales-bg2"></div>
+                <div class="renewed-membership">
+                    <p class="renewed">Trainers</p>
+                </div>
+                <div class="sales-div37">@Model.trainerData</div>
+                <img class="sales-icon" alt="" src="~/Icon/icon@2x.png" />
+            </div>
+            <div class="sales-group">
+                <div class="sales-bg3"></div>
+                <div class="renewed-membership">Membership</div>
+                <div class="sales-div37">@Model.mData</div>
+                <img class="sales-icon" alt="" src="~/Icon/icon.svg" />
+            </div>
+            <div class="sales-group">
+                <div class="sales-bg5"></div>
+                <div class="renewed-membership">
+                    <p class="renewed">Total Transaction</p>
+                </div>
+                <div class="sales-div37">@Model.tranData</div>
+                <img class="sales-icon" alt="" src="~/Icon/icon2.svg" />
+            </div>
+            <div class="sales-group">
+                <div class="sales-bg2"></div>
+                <div class="renewed-membership">Amount Collected</div>
+                <div class="sales-div37">@Model.totalAmount</div>
+                <img class="sales-icon" alt="" src="~/Icon/icon2.svg" />
+            </div>
+        </div>
+    </div>
+</div>
+

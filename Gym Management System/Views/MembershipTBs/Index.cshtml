@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Gym_Management_System.Models.MembershipTB>
+
+@{
+    ViewBag.Title = "Index";
+}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active" style="margin-left:20px">
+                <span class="navbar-brand">Show</span>
+            </li>
+            <li>
+                <span class="navbar-brand">@Model.Count()</span><span>entries</span>
+            </li>
+        </ul>
+        <form method="get" class="form-inline my-2 my-lg-0" style="display: flex; margin-left:15px;">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+            <button class="btn btn-outline-success my-2 my-sm-0" style="margin-left:10px;" type="submit">Search</button>
+        </form>
+    </div>
+    @*<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-right:50px">Add Visitor</button>*@
+    <a href="@Url.Action("Create", "MembershipTBs")" class="btn btn-primary" style="margin-right:50px">Add Plan</a>
+</nav>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col"><label for="name">Membership Plan</label></th>
+            <th scope="col">Price</th>
+            <th scope="col">Days</th>
+            <th scope="col">Type</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@Html.DisplayFor(modelItem => item.MembershipPlan)</th>
+                <td> @Html.DisplayFor(modelItem => item.Price) Rs</td>
+                <td>@Html.DisplayFor(modelItem => item.Days) Days</td>
+                <td>@Html.DisplayFor(modelItem => item.Type)</td>
+                <td>
+                    <a id="editLink" href="@Url.Action("Edit", new { id = item.ID })">
+                        <img id="editImage" src="~/Icon/edit-1-2.svg" alt="Edit" />
+                    </a>
+                    <a id="editLink" href="@Url.Action("Delete", new { id = item.ID })">
+                        <img id="editImage1" src="~/Icon/trash2-2.svg" alt="Edit" />
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

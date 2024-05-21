@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GYMDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="VisitorTB">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="visitDate" Type="date" Nullable="false" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="address" Type="varchar" MaxLength="90" />
+    <Property Name="gender" Type="varchar" MaxLength="50" />
+    <Property Name="enquiryMode" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="GYMDBModelStoreContainer">
+    <EntitySet Name="VisitorTB" EntityType="Self.VisitorTB" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

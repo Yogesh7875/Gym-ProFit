@@ -1,0 +1,108 @@
+﻿@model Gym_Management_System.Models.VisitorTB
+
+@{
+    ViewBag.Title = "Create";
+}
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+<link href="~/CSS/Style.css" rel="stylesheet" />
+<div class="container">
+    <h1 class="mt-4">Add Gym Visitor</h1>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Name", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Phone", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Name", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.visitDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.visitDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.visitDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Addres", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label">Gender</label>
+                <div class="form-check">
+                    @Html.RadioButtonFor(model => model.gender, "Male", new { @class = "form-check-input" })
+                    <label class="form-check-label" for="male">Male</label>
+                </div>
+                <div class="form-check">
+                    @Html.RadioButtonFor(model => model.gender, "Female", new { @class = "form-check-input", @value = "Female" })
+                    <label class="form-check-label" for="female">Female</label>
+                </div>
+                <div class="form-check">
+                    @Html.RadioButtonFor(model => model.gender, "Other", new { @class = "form-check-input", @value = "Other" })
+                    <label class="form-check-label" for="other">Other</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label">Enquiry Mode</label>
+                <div class="form-check">
+                    @Html.RadioButtonFor(model => model.enquiryMode, "Call", new { @class = "form-check-input", @value = "Call" })
+                    <label class="form-check-label" for="call">Call</label>
+                </div>
+                <div class="form-check">
+                    @Html.RadioButtonFor(model => model.enquiryMode, "Visit", new { @class = "form-check-input", @value = "Visit" })
+                    <label class="form-check-label" for="visit">Visit</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 d-grid gap-2">
+            <a href="@Url.Action("Index","VisitorTBs")" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+        <div class="col-md-6 d-grid gap-2">
+            <input type="submit" value="Submit" class="btn btn-outline-success" />
+        </div>
+    </div>
+</div>
+}
