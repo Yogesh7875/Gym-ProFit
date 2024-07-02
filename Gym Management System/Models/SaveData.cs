@@ -33,7 +33,8 @@ namespace Gym_Management_System.Models
                 OfferPrice = combineView.transaction.OfferPrice,
                 PaidAmount = combineView.transaction.PaidAmount,
                 Days = combineView.transaction.Days,
-                Trainer=combineView.transaction.Trainer,
+                MembershipEndDate=combineView.transaction.MembershipEndDate,
+                Trainer =combineView.transaction.Trainer,
                 PaymentDate=combineView.transaction.PaymentDate,
                 DueDate=combineView.transaction.DueDate,
                 DueAmount=rem,
@@ -83,6 +84,7 @@ namespace Gym_Management_System.Models
                     existingTransaction.OfferPrice = combineView.transaction.OfferPrice;
                     existingTransaction.PaidAmount = combineView.transaction.PaidAmount;
                     existingTransaction.Days = combineView.transaction.Days;
+                    existingTransaction.MembershipEndDate = combineView.transaction.MembershipEndDate;
                     existingTransaction.Trainer = combineView.transaction.Trainer;
                     existingTransaction.PaymentDate = combineView.transaction.PaymentDate;
                     existingTransaction.DueDate = combineView.transaction.DueDate;
@@ -123,6 +125,7 @@ namespace Gym_Management_System.Models
                 OfferPrice = combineView.transaction.OfferPrice,
                 PaidAmount = combineView.transaction.PaidAmount,
                 Days = combineView.transaction.Days,
+                MembershipEndDate=combineView.transaction.MembershipEndDate,
                 Trainer = combineView.transaction.Trainer,
                 PaymentDate = combineView.transaction.PaymentDate,
                 DueDate = combineView.transaction.DueDate,

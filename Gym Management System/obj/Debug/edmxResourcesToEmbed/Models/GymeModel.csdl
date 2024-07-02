@@ -1,67 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="GYMDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="GYMDBEntities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MembershipTBs" EntityType="GYMDBModel.MembershipTB" />
+    <EntitySet Name="MemberTBs" EntityType="GYMDBModel.MemberTB" />
+    <EntitySet Name="sysdiagrams" EntityType="GYMDBModel.sysdiagram" />
+    <EntitySet Name="TrainerTBs" EntityType="GYMDBModel.TrainerTB" />
+    <EntitySet Name="TransactionTBs" EntityType="GYMDBModel.TransactionTB" />
+    <EntitySet Name="VisitorTBs" EntityType="GYMDBModel.VisitorTB" />
+    <AssociationSet Name="FK_TransactionTB_MemberTB" Association="GYMDBModel.FK_TransactionTB_MemberTB">
+      <End Role="MemberTB" EntitySet="MemberTBs" />
+      <End Role="TransactionTB" EntitySet="TransactionTBs" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="MembershipTB">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="MembershipPlan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MembershipPlan" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="Price" Type="Int32" Nullable="false" />
     <Property Name="Days" Type="Int32" Nullable="false" />
-    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="MemberTB">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="JoiningDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="TransactionTBs" Relationship="GYMDBModel.FK_TransactionTB_MemberTB" FromRole="MemberTB" ToRole="TransactionTB" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="TrainerTB">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="JoinDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Experience" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="JoinDate" Type="DateTime" Precision="0" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Experience" Type="Int32" />
   </EntityType>
-  <EntityType Name="VisitorTB">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="visitDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="address" Type="String" MaxLength="90" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="enquiryMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-  </EntityType>
-  <EntityContainer Name="GYMDBEntities4" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="MembershipTBs" EntityType="Self.MembershipTB" />
-    <EntitySet Name="MemberTBs" EntityType="Self.MemberTB" />
-    <EntitySet Name="TrainerTBs" EntityType="Self.TrainerTB" />
-    <EntitySet Name="VisitorTBs" EntityType="Self.VisitorTB" />
-    <EntitySet Name="TransactionTBs" EntityType="GYMDBModel.TransactionTB" />
-    <AssociationSet Name="FK_TransactionTB_MemberTB" Association="GYMDBModel.FK_TransactionTB_MemberTB">
-      <End Role="MemberTB" EntitySet="MemberTBs" />
-      <End Role="TransactionTB" EntitySet="TransactionTBs" />
-    </AssociationSet>
-  </EntityContainer>
   <EntityType Name="TransactionTB">
     <Key>
       <PropertyRef Name="ID" />
@@ -73,11 +70,26 @@
     <Property Name="DueAmount" Type="Int32" Nullable="false" />
     <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="M_ID" Type="Int32" Nullable="false" />
-    <Property Name="Trainer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Trainer" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="PaymentMode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="0" />
     <Property Name="Days" Type="Int32" />
+    <Property Name="MembershipEndDate" Type="DateTime" Precision="0" />
     <NavigationProperty Name="MemberTB" Relationship="GYMDBModel.FK_TransactionTB_MemberTB" FromRole="TransactionTB" ToRole="MemberTB" />
+  </EntityType>
+  <EntityType Name="VisitorTB">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="visitDate" Type="DateTime" Precision="0" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="address" Type="String" MaxLength="190" FixedLength="false" Unicode="false" />
+    <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="enquiryMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_TransactionTB_MemberTB">
     <End Type="GYMDBModel.MemberTB" Role="MemberTB" Multiplicity="1" />

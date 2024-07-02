@@ -18,8 +18,8 @@ namespace Gym_Management_System.Models
         public string name { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
-        public System.DateTime visitDate { get; set; }
-        public System.DateTime DOB { get; set; }
+        public Nullable<System.DateTime> visitDate { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
         public string address { get; set; }
         public string gender { get; set; }
         public string enquiryMode { get; set; }

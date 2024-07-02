@@ -1,0 +1,100 @@
+﻿@model Gym_Management_System.Models.TransactionTB
+
+@{
+    ViewBag.Title = "Update Membership";
+}
+
+<h2>Update Membership</h2>
+
+@using (Html.BeginForm("UpdateMembership", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.M_ID)
+    <div class="card">
+        <div class="card-body">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Membership, "Plan", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(model => model.Membership, ViewBag.MembershipPlans as SelectList, "Select Membership Plan", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Membership, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Trainer, "Trainer Assigned", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(model => model.Trainer, ViewBag.TrainerSelect as SelectList, "Select Trainer", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Trainer, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Days, "Membership Days", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Days, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Membership Days", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Days, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MembershipEndDate, "Membership End", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.MembershipEndDate, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Membership End Date", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.MembershipEndDate, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.OfferPrice, "Offered Price", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.OfferPrice, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Offered Price", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.OfferPrice, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PaidAmount, "Paid Amount", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.PaidAmount, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Paid Amount", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.PaidAmount, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PaymentDate, "Payment Date")
+                @Html.EditorFor(m => m.PaymentDate, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.PaymentDate, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DueDate, "Due Date")
+                @Html.EditorFor(m => m.DueDate, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PaymentMode, "Payment Mode", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(model => model.PaymentMode, new SelectList(new[]
+                    {
+                        new SelectListItem { Text = "Choose Mode", Value = "" },
+                        new SelectListItem { Text = "Cash", Value = "Cash" },
+                        new SelectListItem { Text = "UPI", Value = "UPI" },
+                        new SelectListItem { Text = "Google Pay", Value = "Google Pay" },
+                        new SelectListItem { Text = "Phone Pay", Value = "Phone Pay" }
+                    }, "Value", "Text"), new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <div class="text-right mt-3">
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(function () {
+            $('#Days').on('input', function () {
+                var days = parseInt($(this).val());
+                if (!isNaN(days)) {
+                    var endDate = new Date();
+                    endDate.setDate(endDate.getDate() + days);
+                    var formattedDate = endDate.toISOString().substr(0, 10);
+                    $('#MembershipEndDate').val(formattedDate);
+                } else {
+                    $('#MembershipEndDate').val('');
+                }
+            });
+        });
+    </script>
+}

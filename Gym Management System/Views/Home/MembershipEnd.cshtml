@@ -1,0 +1,185 @@
+﻿@model Gym_Management_System.Models.TransactionTB
+@{
+    ViewBag.Title = "MembershipEnd";
+    int totalCount = (int)ViewData["tCount"];
+}
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        animation: animatetop 0.4s;
+        border-radius: 10px;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .modal-header, .modal-body, .modal-footer {
+        padding: 10px;
+    }
+
+    .modal-header {
+        background-color: #4CAF50;
+        color: white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .modal-footer {
+        background-color: #f1f1f1;
+        text-align: right;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+        .modal-footer .btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .modal-footer .btn:hover {
+                background-color: #45a049;
+            }
+</style>
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById("myModal");
+            var span = document.getElementsByClassName("close")[0];
+            var message = '@TempData["Message"]';
+
+            document.getElementById("modal-message").innerText = message;
+            modal.style.display = "block";
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+    </script>
+}
+
+<!-- Modal HTML -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Notification</h2>
+        </div>
+        <div class="modal-body">
+            <p id="modal-message"></p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" onclick="document.getElementById('myModal').style.display='none'">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- Navbar and other content -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 20px;">
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active" style="margin-left: 20px;">
+                <span class="navbar-brand">Show</span>
+            </li>
+            <li>
+                <span class="navbar-brand"></span>@totalCount<span> entries</span>
+            </li>
+        </ul>
+        <form action="@Url.Action("MembershipEnd", "Home")" method="get" style="display: flex; margin-left: 15px;">
+            <div class="form-group">
+                <input type="text" name="searchString" class="form-control" placeholder="Search by name">
+            </div>
+            <button type="submit" style="margin-left: 10px;" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+    <div class="dropdown" data-bs-theme="light" style="margin-right:50px;">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButtonLight" data-bs-toggle="dropdown" aria-expanded="false">
+            SHOW FILTER
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonLight">
+            <li><a class="dropdown-item" href="@Url.Action("MembershipEnd", new { gender = "Male" })">Male</a></li>
+            <li><a class="dropdown-item" href="@Url.Action("MembershipEnd", new { gender = "Female" })">Female</a></li>
+        </ul>
+    </div>
+</nav>
+
+<table class="table table-striped" style="width: 100%; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Phone</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Plan</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Joining Date</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Membership Days</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Membership End</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Address</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Trainer</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Message</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.Transactions)
+        {
+            <tr>
+                <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;"><img src="~/Icon/profile.jpg" width="30px" height="30px" />&nbsp;&nbsp;@item.MemberTB.Name</td>
+                <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">@item.MemberTB.Phone</td>
+                <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">@item.Membership</td>
+                <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">@{@item.MemberTB.JoiningDate.ToString("dd-MM-yyyy")}</td>
+                <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">@item.Days</td>
+                <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">@{@item.MembershipEndDate.ToString("dd-MM-yyyy")}</td>
+                <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">@item.MemberTB.Address</td>
+                <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">@item.Trainer</td>
+                <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">
+                    <a href="@Url.Action("WhatsApp","Home", new { id = item.MemberTB.ID})" style="width: 20px; margin-right: 10px; cursor: pointer;">
+                        <img src="~/Icon/mail.jpg" alt="Delete" style="width: 29px; margin-right: 10px; cursor: pointer;" />
+                    </a>
+                </td>
+                <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">
+                    <a href="@Url.Action("UpdateMembership", "Home", new {id = item.ID })">Renew Membership</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

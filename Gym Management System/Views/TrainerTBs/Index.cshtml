@@ -43,13 +43,21 @@
                 <td>@Html.DisplayFor(modelItem => item.Email)</td>
                 <td>
                     @{
-                        @item.JoinDate.ToString("dd-MM-yyyy");
-                     }
+                        @(
+                            item.JoinDate.HasValue
+                            ? item.JoinDate.Value.ToString("dd-MM-yyyy")
+                            : "N/A"
+                        )
+                    }
                 </td>
                 <td>
                     @{
-                        @item.DOB.ToString("dd-MM-yyyy");
-                     }
+                        @(
+                            item.DOB.HasValue
+                            ? item.DOB.Value.ToString("dd-MM-yyyy")
+                            : "N/A"
+                        )
+                    }
                 </td>
                 <td>@Html.DisplayFor(modelItem => item.Address)</td>
                 <td>@Html.DisplayFor(modelItem => item.Experience)</td>

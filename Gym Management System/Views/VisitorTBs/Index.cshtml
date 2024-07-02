@@ -43,14 +43,22 @@
             <td>@Html.DisplayFor(modelItem => item.email)</td>
             <td>
                 @{
-                    @item.visitDate.ToString("dd-MM-yyyy")
-            }
-        </td>
-        <td>
-            @{
-                @item.DOB.ToString("dd-MM-yyyy")
-        }
-        </td>
+                    @(
+                            item.visitDate.HasValue
+                            ? item.visitDate.Value.ToString("dd-MM-yyyy")
+                            : "N/A"
+                        )
+                }
+            </td>
+            <td>
+                @{
+                    @(
+                            item.DOB.HasValue
+                            ? item.DOB.Value.ToString("dd-MM-yyyy")
+                            : "N/A"
+                        )
+                }
+            </td>
         <td>@Html.DisplayFor(modelItem => item.address)</td>
         <td>
             <a id="editLink" href="@Url.Action("Edit", new { id = item.ID })">

@@ -40,7 +40,7 @@ namespace Gym_Management_System.Controllers
             ViewBag.MembershipPlans = new SelectList(data, "MembershipPlan", "MembershipPlan");
             return View();
         }
-        [AcceptVerbs(HttpVerbs.Get|HttpVerbs.Post)]
+        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public ActionResult Create(CombineView combineView)
         {
             try
@@ -49,7 +49,7 @@ namespace Gym_Management_System.Controllers
                 {
                     objSaveData.insertData(combineView);
                     TempData["msg"] = "Records Add Successfuly.";
-                    return RedirectToAction("Index","MemberTBs");
+                    return RedirectToAction("Index", "MemberTBs");
                 }
                 else
                 {
@@ -62,20 +62,79 @@ namespace Gym_Management_System.Controllers
                     return View();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TempData["msg"] = "Records Add Failed." + ex.Message;
                 return RedirectToAction("Payment");
             }
         }
-        public ActionResult Transaction()
+        public ActionResult Transaction(string payment)
         {
-            var transactions = db.TransactionTBs
+            if (payment == "Cash")
+            {
+                var transactions = db.TransactionTBs
+                     .Include(t => t.MemberTB)
+                     .Where(t => t.PaymentMode == "Cash")
+                     .ToList();
+
+                var memberModel = db.MemberTBs.ToList();
+
+                ViewBag.Transactions = transactions;
+                ViewBag.Members = memberModel;
+
+                return View();
+            }
+            else if (payment == "UPI")
+            {
+                var transactions = db.TransactionTBs
+                     .Include(t => t.MemberTB)
+                     .Where(t => t.PaymentMode == "UPI")
+                     .ToList();
+
+                var memberModel = db.MemberTBs.ToList();
+
+                ViewBag.Transactions = transactions;
+                ViewBag.Members = memberModel;
+
+                return View();
+            }
+            else if (payment == "Google Pay")
+            {
+                var transactions = db.TransactionTBs
+                     .Include(t => t.MemberTB)
+                     .Where(t => t.PaymentMode == "Google Pay")
+                     .ToList();
+
+                var memberModel = db.MemberTBs.ToList();
+
+                ViewBag.Transactions = transactions;
+                ViewBag.Members = memberModel;
+
+                return View();
+            }
+            else if (payment == "Phone Pay")
+            {
+                var transactions = db.TransactionTBs
+                     .Include(t => t.MemberTB)
+                     .Where(t => t.PaymentMode == "Phone Pay")
+                     .ToList();
+
+                var memberModel = db.MemberTBs.ToList();
+
+                ViewBag.Transactions = transactions;
+                ViewBag.Members = memberModel;
+
+                return View();
+            }
+            else
+            {
+                var transactions = db.TransactionTBs
             .Include(t => t.MemberTB).ToList();
-            var memberModel = db.MemberTBs.ToList();
-            ViewBag.Transactions = transactions;
-            ViewBag.Members = memberModel;
-            return View();
+                var memberModel = db.MemberTBs.ToList();
+                ViewBag.Transactions = transactions;
+                ViewBag.Members = memberModel;
+                return View();
+            }
         }
         public ActionResult UpdatePayment(int? id)
         {
@@ -91,15 +150,15 @@ namespace Gym_Management_System.Controllers
             return View(transaction);
         }
         [HttpPost]
-        public ActionResult UpdateData(int id,int remAmount, int paidAmounts,int dueAmount,DateTime paydate,string mode)
+        public ActionResult UpdateData(int id, int remAmount, int paidAmounts, int dueAmount, DateTime paydate, string mode)
         {
             var existingTransactionTB = db.TransactionTBs.Find(id);
             if (existingTransactionTB == null)
             {
                 return HttpNotFound();
             }
-            existingTransactionTB.PaidAmount = Convert.ToInt32(paidAmounts+dueAmount);
-            existingTransactionTB.DueAmount = Convert.ToInt32(remAmount-dueAmount);
+            existingTransactionTB.PaidAmount = Convert.ToInt32(paidAmounts + dueAmount);
+            existingTransactionTB.DueAmount = Convert.ToInt32(remAmount - dueAmount);
             existingTransactionTB.PaymentDate = paydate;
             existingTransactionTB.PaymentMode = mode;
             db.Entry(existingTransactionTB).Property(x => x.PaidAmount).IsModified = true;
@@ -109,7 +168,7 @@ namespace Gym_Management_System.Controllers
             db.SaveChanges();
             return RedirectToAction("Dues");
         }
-        public ActionResult UpdateMember(int? id,int? mid)
+        public ActionResult UpdateMember(int? id, int? mid)
         {
             IEnumerable<MembershipTB> mDta = db.MembershipTBs.ToList();
             var data = mDta.ToList();
@@ -152,9 +211,9 @@ namespace Gym_Management_System.Controllers
                 return RedirectToAction("Payment");
             }
         }
-        public ActionResult DeleteMember(int? id,int? mid)
+        public ActionResult DeleteMember(int? id, int? mid)
         {
-            if (id == null&&mid==null)
+            if (id == null && mid == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -170,7 +229,7 @@ namespace Gym_Management_System.Controllers
             return View(combineData);
         }
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
-        public ActionResult DeleteConfirmed(int id,int mid)
+        public ActionResult DeleteConfirmed(int id, int mid)
         {
             MemberTB memberTB = db.MemberTBs.Find(id);
             TransactionTB transactionTB = db.TransactionTBs.Find(mid);
@@ -179,7 +238,7 @@ namespace Gym_Management_System.Controllers
             db.MemberTBs.Remove(memberTB);
 
             db.SaveChanges();
-            return RedirectToAction("Index","MemberTBs");
+            return RedirectToAction("Index", "MemberTBs");
         }
 
         public ActionResult ConvertVisitor(int? id)
@@ -234,8 +293,18 @@ namespace Gym_Management_System.Controllers
             catch (Exception ex)
             {
                 TempData["msg"] = "Records Add Failed." + ex.Message;
-                return RedirectToAction("Index","VisitorTBs");
+                return RedirectToAction("Index", "VisitorTBs");
             }
+        }
+
+        public ActionResult printBill(int? id, int? mid)
+        {
+            var combineData = new CombineView
+            {
+                member = db.MemberTBs.Find(id),
+                transaction = db.TransactionTBs.Find(mid)
+            };
+            return View(combineData);
         }
     }
 }

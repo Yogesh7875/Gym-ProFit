@@ -5,36 +5,46 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="MembershipPlan" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MembershipPlan" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="Price" Type="int" Nullable="false" />
     <Property Name="Days" Type="int" Nullable="false" />
-    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="MemberTB">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
     <Property Name="JoiningDate" Type="date" Nullable="false" />
-    <Property Name="DOB" Type="date" Nullable="false" />
-    <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Gender" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="Address" Type="varchar" MaxLength="250" />
+    <Property Name="Gender" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="TrainerTB">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="JoinDate" Type="date" Nullable="false" />
-    <Property Name="DOB" Type="date" Nullable="false" />
-    <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Experience" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="JoinDate" Type="date" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="Address" Type="varchar" MaxLength="250" />
+    <Property Name="Experience" Type="int" />
   </EntityType>
   <EntityType Name="TransactionTB">
     <Key>
@@ -47,24 +57,25 @@
     <Property Name="DueAmount" Type="int" Nullable="false" />
     <Property Name="DueDate" Type="date" Nullable="false" />
     <Property Name="M_ID" Type="int" Nullable="false" />
-    <Property Name="Trainer" Type="varchar" MaxLength="50" />
+    <Property Name="Trainer" Type="varchar" MaxLength="150" />
     <Property Name="PaymentMode" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="PaymentDate" Type="date" Nullable="false" />
+    <Property Name="PaymentDate" Type="date" />
     <Property Name="Days" Type="int" />
+    <Property Name="MembershipEndDate" Type="date" />
   </EntityType>
   <EntityType Name="VisitorTB">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="phone" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="visitDate" Type="date" Nullable="false" />
-    <Property Name="DOB" Type="date" Nullable="false" />
-    <Property Name="address" Type="varchar" MaxLength="90" Nullable="false" />
-    <Property Name="gender" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="enquiryMode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="visitDate" Type="date" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="address" Type="varchar" MaxLength="190" />
+    <Property Name="gender" Type="varchar" MaxLength="50" />
+    <Property Name="enquiryMode" Type="varchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_TransactionTB_MemberTB">
     <End Role="MemberTB" Type="Self.MemberTB" Multiplicity="1" />
@@ -81,6 +92,7 @@
   <EntityContainer Name="GYMDBModelStoreContainer">
     <EntitySet Name="MembershipTB" EntityType="Self.MembershipTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MemberTB" EntityType="Self.MemberTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TrainerTB" EntityType="Self.TrainerTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TransactionTB" EntityType="Self.TransactionTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VisitorTB" EntityType="Self.VisitorTB" Schema="dbo" store:Type="Tables" />

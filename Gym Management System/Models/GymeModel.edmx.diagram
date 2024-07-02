@@ -5,11 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="cef46ff7557446f18fea8fe478021e11" Name="Diagram1" ZoomLevel="66">
-        <EntityTypeShape EntityType="GYMDBModel.MembershipTB" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.MemberTB" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.TrainerTB" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.VisitorTB" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GYMDBModel.TransactionTB" Width="1.5" PointX="5" PointY="6.25" />
+        <EntityTypeShape EntityType="GYMDBModel.MembershipTB" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GYMDBModel.MemberTB" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="GYMDBModel.sysdiagram" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="GYMDBModel.TrainerTB" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="GYMDBModel.TransactionTB" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="GYMDBModel.VisitorTB" Width="1.5" PointX="5.75" PointY="3.75" />
         <AssociationConnector Association="GYMDBModel.FK_TransactionTB_MemberTB" />
       </Diagram>
     </edmx:Diagrams>

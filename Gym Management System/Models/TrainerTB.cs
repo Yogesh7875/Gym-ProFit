@@ -18,9 +18,9 @@ namespace Gym_Management_System.Models
         public string Name { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public System.DateTime JoinDate { get; set; }
-        public System.DateTime DOB { get; set; }
+        public Nullable<System.DateTime> JoinDate { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
         public string Address { get; set; }
-        public int Experience { get; set; }
+        public Nullable<int> Experience { get; set; }
     }
 }

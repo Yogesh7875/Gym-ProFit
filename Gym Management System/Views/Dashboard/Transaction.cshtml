@@ -10,7 +10,17 @@
             </li>
         </ul>
     </div>
-    <a class="btn btn-outline-secondary" style="margin-right:60px">SHOW FILTER</a>
+    <div class="dropdown" data-bs-theme="light" style="margin-right:65px;">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButtonLight" data-bs-toggle="dropdown" aria-expanded="false">
+            SHOW FILTER
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonLight">
+            <li><a class="dropdown-item" href="@Url.Action("Transaction", new { payment = "Cash" })">Cash</a></li>
+            <li><a class="dropdown-item" href="@Url.Action("Transaction", new { payment = "UPI" })">UPI</a></li>
+            <li><a class="dropdown-item" href="@Url.Action("Transaction", new { payment = "Google Pay" })">Google Pay</a></li>
+            <li><a class="dropdown-item" href="@Url.Action("Transaction", new { payment = "Phone Pay" })">Phone Pay</a></li>
+        </ul>
+    </div>
 </nav>
 <table class="table table-striped">
     <thead>

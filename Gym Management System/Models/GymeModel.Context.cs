@@ -27,8 +27,9 @@ namespace Gym_Management_System.Models
     
         public virtual DbSet<MembershipTB> MembershipTBs { get; set; }
         public virtual DbSet<MemberTB> MemberTBs { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TrainerTB> TrainerTBs { get; set; }
-        public virtual DbSet<VisitorTB> VisitorTBs { get; set; }
         public virtual DbSet<TransactionTB> TransactionTBs { get; set; }
+        public virtual DbSet<VisitorTB> VisitorTBs { get; set; }
     }
 }

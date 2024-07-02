@@ -39,7 +39,8 @@
             background-color: #0056b3;
         }
 </style>
-@using (Html.BeginForm("ConvertToMember", "Dashboard",FormMethod.Post, new { @class = "payment-form" }))
+
+@using (Html.BeginForm("ConvertToMember", "Dashboard", FormMethod.Post, new { @class = "payment-form" }))
 {
     @Html.AntiForgeryToken()
     <div class="container">
@@ -53,17 +54,17 @@
                     <div class="card-body">
                         <div class="form-group">
                             @Html.LabelFor(model => model.member.Name)
-                            @Html.EditorFor(model => model.member.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter  Name", @required = "required" } })
+                            @Html.EditorFor(model => model.member.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Name", @required = "required" } })
                             @Html.ValidationMessageFor(model => model.member.Name, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.member.Phone)
-                            @Html.EditorFor(model => model.member.Phone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter  Phone", @required = "required" } })
+                            @Html.EditorFor(model => model.member.Phone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Phone", @required = "required" } })
                             @Html.ValidationMessageFor(model => model.member.Phone, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.member.Email)
-                            @Html.EditorFor(model => model.member.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter  Email", @required = "required" } })
+                            @Html.EditorFor(model => model.member.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Email", @required = "required" } })
                             @Html.ValidationMessageFor(model => model.member.Email, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
@@ -78,21 +79,21 @@
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.member.Address)
-                            @Html.EditorFor(model => model.member.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter  Name", @required = "required" } })
+                            @Html.EditorFor(model => model.member.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Address", @required = "required" } })
                             @Html.ValidationMessageFor(model => model.member.Address, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             <label class="form-label">Gender</label>
                             <div class="form-check">
-                                @Html.RadioButtonFor(model => model.member.Gender, "Male", new { @class = "form-check-input" })
+                                @Html.RadioButtonFor(model => model.member.Gender, "Male", new { @class = "form-check-input", @id = "male" })
                                 <label class="form-check-label" for="male">Male</label>
                             </div>
                             <div class="form-check">
-                                @Html.RadioButtonFor(model => model.member.Gender, "Female", new { @class = "form-check-input" })
+                                @Html.RadioButtonFor(model => model.member.Gender, "Female", new { @class = "form-check-input", @id = "female" })
                                 <label class="form-check-label" for="female">Female</label>
                             </div>
                             <div class="form-check">
-                                @Html.RadioButtonFor(model => model.member.Gender, "Other", new { @class = "form-check-input" })
+                                @Html.RadioButtonFor(model => model.member.Gender, "Other", new { @class = "form-check-input", @id = "other" })
                                 <label class="form-check-label" for="other">Other</label>
                             </div>
                         </div>
@@ -117,17 +118,22 @@
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.transaction.Days, "Membership Days")
-                            @Html.EditorFor(m => m.transaction.Days, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Membership  Days", @required = "required" } })
+                            @Html.EditorFor(m => m.transaction.Days, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Membership Days", @required = "required", @id = "daysInput" } })
                             @Html.ValidationMessageFor(model => model.transaction.Days, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
+                            @Html.LabelFor(model => model.transaction.MembershipEndDate, "Membership End")
+                            @Html.EditorFor(m => m.transaction.MembershipEndDate, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Membership End Date", @required = "required", @readonly = "readonly", @id = "endDateInput" } })
+                            @Html.ValidationMessageFor(model => model.transaction.MembershipEndDate, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
                             @Html.LabelFor(model => model.transaction.OfferPrice, "Offered Price")
-                            @Html.EditorFor(m => m.transaction.OfferPrice, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter  Offered Price", @required = "required" } })
+                            @Html.EditorFor(m => m.transaction.OfferPrice, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Offered Price", @required = "required" } })
                             @Html.ValidationMessageFor(model => model.transaction.OfferPrice, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.transaction.PaidAmount, "Paid Amount")
-                            @Html.EditorFor(m => m.transaction.PaidAmount, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter   Amount", @required = "required" } })
+                            @Html.EditorFor(m => m.transaction.PaidAmount, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Paid Amount", @required = "required" } })
                             @Html.ValidationMessageFor(model => model.transaction.PaidAmount, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
@@ -161,3 +167,16 @@
     </div>
 }
 
+<script>
+    document.getElementById('daysInput').addEventListener('input', function () {
+        const days = parseInt(this.value, 10);
+        if (!isNaN(days)) {
+            const today = new Date();
+            today.setDate(today.getDate() + days);
+            const endDate = today.toISOString().split('T')[0];
+            document.getElementById('endDateInput').value = endDate;
+        } else {
+            document.getElementById('endDateInput').value = '';
+        }
+    });
+</script>

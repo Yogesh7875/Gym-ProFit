@@ -22,41 +22,62 @@
             <button type="submit" style="margin-left: 10px;" class="btn btn-primary">Search</button>
         </form>
     </div>
+    <div class="dropdown" data-bs-theme="light" style="margin-right:5px;">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButtonLight" data-bs-toggle="dropdown" aria-expanded="false">
+        SHOW FILTER
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonLight">
+        <li><a class="dropdown-item" href="@Url.Action("Index", new { gender = "Male" })">Male</a></li>
+        <li><a class="dropdown-item" href="@Url.Action("Index", new { gender = "Female" })">Female</a></li>
+    </ul>
+</div>
     <a href="@Url.Action("Payment", "Dashboard")" class="btn btn-primary" style="margin-right: 20px;">Add Member</a>
 </nav>
 <table class="table table-striped" style="width: 100%; border-collapse: collapse;">
     <thead>
         <tr>
-            <th scope="col" style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name</th>
-            <th scope="col" style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Phone</th>
-            <th scope="col" style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Plan</th>
-            <th scope="col" style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Joining Date</th>
-            <th scope="col" style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Membership Days</th>
-            <th scope="col" style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Address</th>
-            <th scope="col" style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Trainer</th>
-            <th scope="col" style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Action</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Phone</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Plan</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Joining Date</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Membership Days</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Membership End</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Address</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Trainer</th>
+            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Action</th>            <th scope="col" style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">Invoice</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in ViewBag.Transactions)
         {
-            <tr>
-                <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;"><img src="~/Icon/profile.jpg" width="30px" height="30px" />&nbsp;&nbsp;@item.MemberTB.Name</td>
-                <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">@item.MemberTB.Phone</td>
-                <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">@item.Membership</td>
-                <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">@{@item.MemberTB.JoiningDate.ToString("dd-MM-yyyy")}</td>
-                <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">@item.Days</td>
-                <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">@item.MemberTB.Address</td>
-                <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">@item.Trainer</td>
-                <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">
-                    <a href="@Url.Action("UpdateMember","Dashboard", new { id = item.MemberTB.ID,mid=item.ID})" style="width: 20px; margin-right: 10px; cursor: pointer;">
-                        <img src="~/Icon/edit-1-2.svg" alt="Edit" style="width: 20px; margin-right: 10px; cursor: pointer;" />
-                    </a>
-                    <a href="@Url.Action("DeleteMember","Dashboard", new { id = item.MemberTB.ID,mid=item.ID})" style="width: 20px; margin-right: 10px; cursor: pointer;">
-                        <img src="~/Icon/trash2-2.svg" alt="Delete" style="width: 20px; margin-right: 10px; cursor: pointer;" />
-                    </a>
-                </td>
-            </tr>
+        <tr>
+            <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;"><img src="~/Icon/profile.jpg" width="30px" height="30px" />&nbsp;&nbsp;@item.MemberTB.Name</td>
+            <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">@item.MemberTB.Phone</td>
+            <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">@item.Membership</td>
+            <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">@{@item.MemberTB.JoiningDate.ToString("dd-MM-yyyy")}</td>
+            <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">@item.Days</td>
+            <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">
+                @{
+                    var formattedDate = item.MembershipEndDate?.ToString("dd-MM-yyyy") ?? "N/A";
+                }
+                @formattedDate
+            </td>
+            <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">@item.MemberTB.Address</td>
+            <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">@item.Trainer</td>
+            <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">
+                <a href="@Url.Action("UpdateMember","Dashboard", new { id = item.MemberTB.ID,mid=item.ID})" style="width: 20px; margin-right: 10px; cursor: pointer;">
+                    <img src="~/Icon/edit-1-2.svg" alt="Edit" style="width: 20px; margin-right: 10px; cursor: pointer;" />
+                </a>
+                <a href="@Url.Action("DeleteMember","Dashboard", new { id = item.MemberTB.ID,mid=item.ID})" style="width: 20px; margin-right: 10px; cursor: pointer;">
+                    <img src="~/Icon/trash2-2.svg" alt="Delete" style="width: 20px; margin-right: 10px; cursor: pointer;" />
+                </a>
+            </td>
+            <td style="padding: 5px; text-align: left; border-bottom: 1px solid #ddd;">
+                <a href="@Url.Action("printBill","Dashboard", new { id = item.MemberTB.ID,mid=item.ID})" style="width: 20px; margin-right: 10px; cursor: pointer;">
+                    Print Bill
+                </a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

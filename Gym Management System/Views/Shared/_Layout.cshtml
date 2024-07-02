@@ -140,11 +140,16 @@ nav.open .sidebar {
                     <li class="list">
                         <a href="@Url.Action("Dues", "Dashboard")" class="nav-link"><i class="bx bx-bell icon"></i>Dues</a>
                     </li>
-                    <li class="list">
-                        <a href="@Url.Action("Transaction", "Dashboard")" class="nav-link"><i class="bx bx-bell icon"></i>Transaction</a>
-                    </li>
+                    @if (Session["UserRole"] != null && Session["UserRole"].ToString() == "Admin")
+                    {
+                <li class="list">
+                    <a href="@Url.Action("Transaction", "Dashboard")" class="nav-link"><i class="bx bx-bell icon"></i>Transaction</a>
+                </li>}
                     <li class="list">
                         <a href="@Url.Action("Index", "MembershipTBs")" class="nav-link"><i class="bx bx-folder-open icon"></i>Membership</a>
+                    </li>
+                    <li class="list">
+                        <a href="@Url.Action("MembershipEnd", "Home")" class="nav-link"><i class="bx bx-folder-open icon"></i>Membership End</a>
                     </li>
                 </ul>
             </div>

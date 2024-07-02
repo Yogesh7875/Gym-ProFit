@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\ll010\source\repos\Gym Management System\Gym Management System\Models\GymeModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\admin\OneDrive\Documents\gym_(2)[1]\gym\Gym Management System\Gym Management System\Models\GymeModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

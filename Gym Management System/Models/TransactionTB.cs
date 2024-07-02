@@ -23,8 +23,9 @@ namespace Gym_Management_System.Models
         public int M_ID { get; set; }
         public string Trainer { get; set; }
         public string PaymentMode { get; set; }
-        public System.DateTime PaymentDate { get; set; }
+        public Nullable<System.DateTime> PaymentDate { get; set; }
         public Nullable<int> Days { get; set; }
+        public Nullable<System.DateTime> MembershipEndDate { get; set; }
     
         public virtual MemberTB MemberTB { get; set; }
     }

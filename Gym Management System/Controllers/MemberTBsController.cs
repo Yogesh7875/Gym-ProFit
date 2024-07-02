@@ -18,19 +18,9 @@ namespace Gym_Management_System.Controllers
 
         // GET: MemberTBs
         [Route("MemberTBs/Index")]
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string searchString, string gender)
         {
-            if (string.IsNullOrEmpty(searchString))
-            {
-                var transactions = db.TransactionTBs.Include(t => t.MemberTB).ToList();
-                var memberModel = db.MemberTBs.ToList();
-
-                ViewBag.Transactions = transactions;
-                ViewBag.Members = memberModel;
-                ViewData["tCount"] = db.MemberTBs.Count();
-                return View();
-            }
-            else
+            if (searchString!=null)
             {
                 var filteredTransactions = db.TransactionTBs.Include(t => t.MemberTB)
     .Where(t => t.MemberTB.Name.Contains(searchString))
@@ -40,7 +30,32 @@ namespace Gym_Management_System.Controllers
                 ViewBag.Transactions = filteredTransactions;
                 return View();
             }
+            else if(gender!=null)
+            {
+                var filteredTransactions = db.TransactionTBs.Include(t => t.MemberTB)
+                .Where(t => gender == null || t.MemberTB.Gender == gender)
+                .ToList();
+
+                int memberCount = db.MemberTBs.Where(m => gender == null || m.Gender == gender).Count();
+
+                ViewData["tCount"] = memberCount;
+                ViewBag.Transactions = filteredTransactions;
+                ViewBag.SelectedGender = gender;
+
+                return View();
+            }
+            else
+            {
+                var transactions = db.TransactionTBs.Include(t => t.MemberTB).ToList();
+                var memberModel = db.MemberTBs.ToList();
+
+                ViewBag.Transactions = transactions;
+                ViewBag.Members = memberModel;
+                ViewData["tCount"] = db.MemberTBs.Count();
+                return View();
+            }
         }
+
         // GET: MemberTBs/Details/5
         public ActionResult Details(int? id)
         {
